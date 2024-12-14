@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search Results</title>
+	<link rel="stylesheet" th:href="@{/styles.css}">
+
+</head>
+<body>
+    <h1>Search Results</h1>
+
+    <!-- Flights -->
+    <h2>Flights</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Airline</th>
+                <th>Destination</th>
+                <th>Departure Date</th>
+                <th>Arrival Date</th>
+                <th>Duration</th>
+                <th>Price</th>
+                <th>Available Seats</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="flight : ${flights}">
+                <td th:text="${flight.airline}">Airline</td>
+                <td th:text="${flight.destination}">Destination</td>
+                <td th:text="${flight.departureDate}">Departure Date</td>
+                <td th:text="${flight.arrivalDate}">Arrival Date</td>
+                <td th:text="${flight.duration}">Duration</td>
+                <td th:text="${flight.price}">Price</td>
+                <td th:text="${flight.availableSeats}">Available Seats</td>
+                <td>
+                    <a th:href="@{'/bookings/flight/' + ${flight.id}}" style="text-decoration: none; color: blue;">Book</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Hotels -->
+    <h2>Hotels</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Available Dates</th>
+                <th>Price Per Night</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+			<tr th:each="hotel : ${hotels}">
+			    <td th:text="${hotel.name}">Hotel Name</td>
+			    <td th:text="${hotel.location}">Location</td>
+			    <td>
+			        <ul>
+			            <li th:each="date : ${hotel.availableDates}" th:text="${date}"></li>
+			        </ul>
+			    </td>
+			    <td th:text="${hotel.pricePerNight}">Price</td>
+			    <td>
+			        <a th:href="@{'/bookings/hotel/' + ${hotel.id}}">Book</a>
+			    </td>
+			</tr>
+        </tbody>
+    </table>
+	<button onclick="window.location.href='/'">Search Again</button>
+</body>
+</html>

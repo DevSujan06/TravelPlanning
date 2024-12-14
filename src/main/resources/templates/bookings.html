@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Bookings</title>
+	<link rel="stylesheet" th:href="@{/styles.css}">
+
+</head>
+<body>
+    <h1>My Bookings</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Type</th>
+                <th>Details</th>
+                <th>Date</th>
+                <th>Total Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="booking : ${bookings}">
+                <td th:text="${booking.id}"></td>
+                <td th:text="${booking.bookingType}"></td>
+                <td th:text="${booking.bookingDetails}"></td>
+                <td th:text="${booking.bookingDate}"></td>
+                <td th:text="${booking.totalPrice}"></td>
+                <td>
+                    <form action="/bookings/delete" method="post" th:action="@{/bookings/delete}">
+                        <input type="hidden" name="id" th:value="${booking.id}">
+                        <button type="submit">Cancel</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

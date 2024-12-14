@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Your Flight</title>
+	<link rel="stylesheet" th:href="@{/styles.css}">
+
+</head>
+<body>
+    <h1>Book Your Flight</h1>
+    <form action="/bookings/confirm/flight" method="post" th:action="@{/bookings/confirm/flight}">
+        <!-- Hidden flight ID -->
+        <input type="hidden" name="flightId" th:value="${flightId}" />
+        <p>Flight ID: <span th:text="${flightId}"></span></p>
+
+        <!-- Passenger details -->
+        <label>Passenger Name: <input type="text" name="passengerName" required /></label><br />
+        <label>Number of Seats: <input type="number" name="seats" min="1" required /></label><br />
+
+        <!-- Submit button -->
+        <button type="submit">Confirm Booking</button>
+    </form>
+</body>
+</html>

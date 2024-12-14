@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Hotel</title>
+	<link rel="stylesheet" th:href="@{/styles.css}">
+
+</head>
+<body>
+    <h1>Book Your Stay</h1>
+    <p>Hotel ID: <span th:text="${hotelId}">Hotel ID</span></p>
+    <form action="/confirm/hotel" method="post">
+        <label>Guest Name: <input type="text" name="guestName"></label><br>
+        <label>Number of Nights: <input type="number" name="nights"></label><br>
+        <button type="submit">Confirm Booking</button>
+    </form>
+</body>
+</html>

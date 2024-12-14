@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Travel Planner - Home</title>
+	<link rel="stylesheet" th:href="@{/styles.css}">
+
+</head>
+<body>
+    <h1>Welcome to Travel Planner</h1>
+    <form action="/search/flights" method="post" th:action="@{/search/flights}">
+        <h2>Search for Flights</h2>
+        <label>Destination: <input type="text" name="destination"></label><br>
+        <label>Departure Date: <input type="text" name="departureDate"></label><br>
+        <label>Passengers: <input type="number" name="passengers"></label><br>
+        <button type="submit">Search Flights</button>
+    </form>
+    <form action="/search/hotels" method="post" th:action="@{/search/hotels}">
+        <h2>Search for Hotels</h2>
+        <label>Location: <input type="text" name="location"></label><br>
+        <label>Available Dates: <input type="text" name="availableDates"></label><br>
+        <button type="submit">Search Hotels</button>
+    </form>
+    <a href="/login" th:href="@{/login}">Login</a> | 
+    <a href="/register" th:href="@{/register}">Register</a>
+</body>
+</html>
