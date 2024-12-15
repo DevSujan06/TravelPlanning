@@ -9,13 +9,13 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+
     @Autowired
     private UserRepository userRepository;
 
     // Retrieve user profile by email
-    public User getUserByEmail(String email) {
-        return userRepository.findByEmail(email)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
     // Update user profile

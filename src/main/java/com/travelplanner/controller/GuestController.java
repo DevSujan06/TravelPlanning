@@ -24,7 +24,6 @@ public class GuestController {
         List<Flight> flights = searchService.searchFlights(searchCriteria);
         return ResponseEntity.ok(flights);
     }
-
     // Allow guests to search for hotels
     @PostMapping("/search/hotels")
     public ResponseEntity<List<Hotel>> searchHotelsAsGuest(@RequestBody HotelSearchDTO searchCriteria) {

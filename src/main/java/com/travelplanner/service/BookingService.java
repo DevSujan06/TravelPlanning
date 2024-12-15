@@ -6,6 +6,9 @@ import com.travelplanner.model.Hotel;
 import com.travelplanner.repository.BookingRepository;
 import com.travelplanner.repository.FlightRepository;
 import com.travelplanner.repository.HotelRepository;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +16,17 @@ import org.springframework.stereotype.Service;
 public class BookingService {
 
     @Autowired
-    private BookingRepository bookingRepository;
+    private static BookingRepository bookingRepository;
 
     @Autowired
     private FlightRepository flightRepository;
 
     @Autowired
     private HotelRepository hotelRepository;
+    public static List<Booking> getBookingsByUserId(String userId) {
+        return bookingRepository.findByUserId(userId);
+    }
+ 
 
     // Book a flight
     public Booking bookFlight(String flightId, String passengerName, int seats) throws Exception {

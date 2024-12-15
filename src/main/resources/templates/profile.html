@@ -3,18 +3,50 @@
 <head>
     <title>User Profile</title>
 	<link rel="stylesheet" th:href="@{/styles.css}">
-
 </head>
 <body>
     <h1>User Profile</h1>
     <p><strong>Username:</strong> <span th:text="${user.username}"></span></p>
     <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+    <p><strong>Password:</strong> <span th:text="${user.password}"></span></p>
 
-    <h2>Update Profile</h2>
-    <form action="/user/profile" method="post" th:action="@{/user/profile}">
-        <label>Username: <input type="text" name="username" th:value="${user.username}"></label><br>
-        <label>Email: <input type="email" name="email" th:value="${user.email}"></label><br>
-        <button type="submit">Update</button>
+    <form th:action="@{/user/profile}" method="post">
+        <input type="hidden" name="id" th:value="${user.id}" />
+        <label>Username: <input type="text" name="username" th:value="${user.username}" /></label><br />
+        <label>Email: <input type="email" name="email" th:value="${user.email}" /></label><br />
+        <label>Password: <input type="password" name="password" th:value="${user.password}" /></label><br />
+        <button type="submit">Update Profile</button>
     </form>
+
+	<table>
+	    <thead>
+	        <tr>
+	            <th>Booking ID</th>
+	            <th>Type</th>
+	            <th>Details</th>
+	            <th>Actions</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr th:each="booking : ${bookings}">
+	            <td th:text="${booking.id}"></td>
+	            <td th:text="${booking.flight != null ? 'Flight' : 'Hotel'}"></td>
+	            <td>
+	                <div th:if="${booking.flight != null}">
+	                    <span th:text="'Flight to ' + ${booking.flight.destination} + ' on ' + ${booking.flight.departureDate}"></span>
+	                </div>
+	                <div th:if="${booking.hotel != null}">
+	                    <span th:text="'Hotel at ' + ${booking.hotel.location} + ' for ' + ${booking.nights} + ' nights'"></span>
+	                </div>
+	            </td>
+	            <td>
+	                <a th:href="@{/bookings/cancel(id=${booking.id})}">Cancel</a>
+	            </td>
+	        </tr>
+	    </tbody>
+	</table>
+
+
+    <a href="/">Go Back</a>
 </body>
 </html>
